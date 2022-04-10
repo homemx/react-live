@@ -1,5 +1,6 @@
 import { transform as _transform } from "sucrase";
 
-const opts = { transforms: ["jsx", "imports"] };
-
-export default (code) => _transform(code, opts).code;
+export default (code, { typescript } = { typescript: false }) =>
+  _transform(code, {
+    transforms: ["jsx", "imports"].concat(typescript ? ["typescript"] : []),
+  }).code;
